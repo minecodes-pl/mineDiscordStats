@@ -1,0 +1,15 @@
+name: mineDiscordStats
+version: ${project.version}
+main: pl.minecodes.minediscordstats.MineDiscordStats
+api-version: 1.16
+authors: [ Nikox3003 ]
+description: Server statistics on Discord
+website: https://minecodes.pl
+softdepend:
+  - PlaceholderAPI
+commands:
+  minediscordstats:
+    description: Main command of plugin
+    aliases:
+      - mdstats
+      - dstats

@@ -1,0 +1,59 @@
+# mineDiscordStats v${project.version}
+
+# Statistic configuration
+# Internal placeholders: %online_players%, %record_players%, %player_joins%, %unique_player_joins%, %max_players%
+# You can also use PAPI placeholders, requires PlaceholderAPI installed.
+
+stats:
+  # Section name, only used in this file and doesn't really matter
+  online_players:
+    # Should stat be enabled?
+    enabled: false
+    # Name and value of the statistic, will be used to update name of voice channel. Format:
+    # Name: Value
+    name: "Online players"
+    value: "%online_players%"
+    # ID of the voice channel
+    channel: 000000000000000000
+
+  record:
+    enabled: false
+    name: "Player record"
+    value: "%record_players%"
+    channel: 000000000000000000
+
+  player_joins:
+    enabled: false
+    name: "Player joins"
+    value: "%player_joins%"
+    channel: 000000000000000000
+
+  unique_player_joins:
+    enabled: false
+    name: "Unique player joins"
+    value: "%unique_player_joins%"
+    channel: 000000000000000000
+
+  max_players:
+    enabled: false
+    name: "Max players"
+    value: "%max_players%"
+    channel: 000000000000000000
+
+# You can also combine placeholders, for example:
+# Online players: 76/120
+  combined_players:
+    enabled: false
+    name: "Online players"
+    value: "%online_players%/%max_players%"
+    channel: 000000000000000000
+
+# Example usage of PlaceholderAPI
+# See all placeholders on https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
+  proxy_players:
+    enabled: false
+    name: "Players on network"
+    value: "%bungee_total%"
+    channel: 000000000000000000
+
+# You can add more statistics, simply copy a section and change what you want!
