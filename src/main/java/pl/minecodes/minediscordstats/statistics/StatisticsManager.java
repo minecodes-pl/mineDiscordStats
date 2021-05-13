@@ -1,5 +1,6 @@
 package pl.minecodes.minediscordstats.statistics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import pl.minecodes.minediscordstats.MineDiscordStats;
 import pl.minecodes.minediscordstats.storage.FileManager;
@@ -15,7 +16,15 @@ public class StatisticsManager {
     private static List<Statistic> statisticList = new ArrayList<>();
 
     public static void refreshStats() {
-        statisticList.forEach(Statistic::update);
+        if(!Bukkit.getServer().isStopping()) {
+            statisticList.forEach(Statistic::update);
+        } else {
+            statisticList.forEach(statistic -> {
+                if(statistic.isUpdateOnServerStop()) {
+                    statistic.update();
+                }
+            });
+        }
     }
 
     public static List<Statistic> getStatisticList() {

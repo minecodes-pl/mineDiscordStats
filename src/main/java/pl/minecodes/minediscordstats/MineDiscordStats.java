@@ -85,6 +85,8 @@ public final class MineDiscordStats extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        papiHookEnabled = false;
+        StatisticsManager.refreshStats();
         getLogger().log(Level.INFO, "Shutting down bot instance...");
         BotManager.getBotInstance().shutdownNow();
         Bukkit.getScheduler().cancelTasks(this);
