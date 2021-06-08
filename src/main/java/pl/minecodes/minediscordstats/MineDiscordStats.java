@@ -11,6 +11,7 @@ import pl.minecodes.minediscordstats.listeners.PlayerJoinListener;
 import pl.minecodes.minediscordstats.statistics.StatisticsManager;
 import pl.minecodes.minediscordstats.storage.DataManger;
 import pl.minecodes.minediscordstats.storage.FileManager;
+import pl.minecodes.minediscordstats.tasks.StatusUpdater;
 
 import javax.security.auth.login.LoginException;
 import java.util.logging.Level;
@@ -40,6 +41,8 @@ public final class MineDiscordStats extends JavaPlugin {
             StatisticsManager.refreshStats();
             DataManger.saveData();
         }, period*20L, period*20L);
+        Bukkit.getScheduler().runTaskTimer(this, new StatusUpdater(BotManager.getBotInstance().getJda()),
+                period*20L, period*20L);
     }
 
     private void registerListeners() {
