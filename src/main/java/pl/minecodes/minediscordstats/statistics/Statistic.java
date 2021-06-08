@@ -17,6 +17,13 @@ public class Statistic {
         this.channelId = channelId;
     }
 
+    public Statistic(String name, String value, long channelId, boolean updateOnServerStop) {
+        this.name = name;
+        this.value = value;
+        this.channelId = channelId;
+        this.updateOnServerStop = updateOnServerStop;
+    }
+
     public void update() {
         JDA jda = BotManager.getBotInstance().getJda();
         VoiceChannel channel = jda.getVoiceChannelById(channelId);
@@ -75,9 +82,18 @@ public class Statistic {
         this.channelId = channelId;
     }
 
+    public boolean isUpdateOnServerStop() {
+        return updateOnServerStop;
+    }
+
+    public void setUpdateOnServerStop(boolean updateOnServerStop) {
+        this.updateOnServerStop = updateOnServerStop;
+    }
+
     private String name;
     private String value;
     private long channelId;
+    private boolean updateOnServerStop;
 
 
 

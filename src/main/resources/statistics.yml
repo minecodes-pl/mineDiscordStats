@@ -1,7 +1,8 @@
 # mineDiscordStats v${project.version}
 
 # Statistic configuration
-# Internal placeholders: %online_players%, %record_players%, %player_joins%, %unique_player_joins%, %max_players%
+# Internal placeholders: %online_players%, %record_players%, %player_joins%, %unique_player_joins%, %max_players%, %status%
+# To update status, you need to add "updateOnServerStop" option to the stat (see example "server_status")
 # You can also use PAPI placeholders, requires PlaceholderAPI installed.
 
 stats:
@@ -39,6 +40,16 @@ stats:
     name: "Max players"
     value: "%max_players%"
     channel: 000000000000000000
+
+# You can update some stats on server stop, mainly useful for server status.
+# Keep in mind that PAPI placeholders cannot be updated like that.
+  server_status:
+    enabled: false
+    name: "Server status"
+    value: "%server_status%"
+    channel: 000000000000000000
+    # You NEED to include this setting in order for status to work
+    updateOnServerStop: true
 
 # You can also combine placeholders, for example:
 # Online players: 76/120
