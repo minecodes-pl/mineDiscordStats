@@ -2,6 +2,7 @@ package pl.minecodes.minediscordstats.placeholders;
 
 import org.bukkit.Bukkit;
 import pl.minecodes.minediscordstats.storage.DataManger;
+import pl.minecodes.minediscordstats.storage.FileManager;
 
 public enum InternalPlaceholder {
 
@@ -9,7 +10,8 @@ public enum InternalPlaceholder {
     RECORD_PLAYERS("record_players"),
     UNIQUE_PLAYER_JOINS("unique_player_joins"),
     PLAYER_JOINS("player_joins"),
-    MAX_PLAYERS("max_players");
+    MAX_PLAYERS("max_players"),
+    SERVER_STATUS("server_status");
 
     public String getName() {
         return name;
@@ -27,6 +29,12 @@ public enum InternalPlaceholder {
                 return String.valueOf(DataManger.getPlayerJoins());
             case MAX_PLAYERS:
                 return String.valueOf(Bukkit.getMaxPlayers());
+            case SERVER_STATUS:
+                if(Bukkit.getServer().isStopping()) {
+                    return FileManager.getMessages().placeholders().statusOffline();
+                } else {
+                    return FileManager.getMessages().placeholders().statusOnline();
+                }
             default:
                 return "undefined";
         }
