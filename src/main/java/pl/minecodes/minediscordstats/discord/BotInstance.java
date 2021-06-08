@@ -3,6 +3,7 @@ package pl.minecodes.minediscordstats.discord;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import pl.minecodes.minediscordstats.placeholders.PlaceholderHandler;
 import pl.minecodes.minediscordstats.storage.FileManager;
 
 import javax.security.auth.login.LoginException;
@@ -53,7 +54,7 @@ public class BotInstance {
             e.printStackTrace();
         }
         setReady(true);
-        jda.getPresence().setActivity(Activity.playing(FileManager.getConfig().bot().status()));
+        jda.getPresence().setActivity(Activity.playing(PlaceholderHandler.parse(FileManager.getConfig().bot().status())));
         return this.jda;
     }
 
