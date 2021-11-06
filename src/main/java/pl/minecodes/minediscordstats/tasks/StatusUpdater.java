@@ -7,12 +7,11 @@ import pl.minecodes.minediscordstats.storage.FileManager;
 
 public class StatusUpdater implements Runnable {
 
-    private JDA jda;
+    private final JDA jda;
 
     public StatusUpdater(JDA jda) {
         this.jda = jda;
     }
-
 
     @Override
     public void run() {
