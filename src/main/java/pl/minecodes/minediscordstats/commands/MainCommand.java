@@ -23,7 +23,6 @@ public class MainCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-
         if(!sender.hasPermission("minediscordstats.admin")) {
             MessageUtil.sendMessage(sender, "&amineDiscordStats v" + plugin.getDescription().getVersion()
                     + " by Nikox3003");
