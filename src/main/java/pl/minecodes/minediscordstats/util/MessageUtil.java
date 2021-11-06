@@ -4,7 +4,10 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class MessageUtil {
+public final class MessageUtil {
+
+    private MessageUtil() {
+    }
 
     public static String format(String message) {
         message = ChatColor.translateAlternateColorCodes('&', message);
