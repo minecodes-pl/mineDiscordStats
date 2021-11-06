@@ -1,7 +1,7 @@
 package pl.minecodes.minediscordstats.placeholders;
 
 import org.bukkit.Bukkit;
-import pl.minecodes.minediscordstats.storage.DataManger;
+import pl.minecodes.minediscordstats.storage.DataManager;
 import pl.minecodes.minediscordstats.storage.FileManager;
 
 public enum InternalPlaceholder {
@@ -22,11 +22,11 @@ public enum InternalPlaceholder {
             case ONLINE_PLAYERS:
                 return String.valueOf(Bukkit.getOnlinePlayers().size());
             case RECORD_PLAYERS:
-                return String.valueOf(DataManger.getRecordPlayers());
+                return String.valueOf(DataManager.getRecordPlayers());
             case UNIQUE_PLAYER_JOINS:
                 return String.valueOf(Bukkit.getOfflinePlayers().length);
             case PLAYER_JOINS:
-                return String.valueOf(DataManger.getPlayerJoins());
+                return String.valueOf(DataManager.getPlayerJoins());
             case MAX_PLAYERS:
                 return String.valueOf(Bukkit.getMaxPlayers());
             case SERVER_STATUS:
@@ -40,7 +40,7 @@ public enum InternalPlaceholder {
         }
     }
 
-    private String name;
+    private final String name;
 
     InternalPlaceholder(String name) {
         this.name = name;
