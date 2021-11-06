@@ -1,19 +1,14 @@
 package pl.minecodes.minediscordstats.storage;
 
+import java.io.File;
+import java.io.IOException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.minecodes.minediscordstats.MineDiscordStats;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class FileManager {
 
-    private static MineDiscordStats plugin = MineDiscordStats.getInstance();
-    private static Logger logger = plugin.getLogger();
+    private static final MineDiscordStats plugin = MineDiscordStats.getInstance();
     private static Config config;
     private static Messages messages;
     private static FileConfiguration data;
