@@ -7,9 +7,8 @@ import pl.minecodes.minediscordstats.MineDiscordStats;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class DataManger {
+public class DataManager {
 
     private static int currentPlayers;
     private static int recordPlayers;
@@ -21,7 +20,7 @@ public class DataManger {
     }
 
     public static void setCurrentPlayers(int currentPlayers) {
-        DataManger.currentPlayers = currentPlayers;
+        DataManager.currentPlayers = currentPlayers;
     }
 
     public static int getRecordPlayers() {
@@ -29,7 +28,7 @@ public class DataManger {
     }
 
     public static void setRecordPlayers(int recordPlayers) {
-        DataManger.recordPlayers = recordPlayers;
+        DataManager.recordPlayers = recordPlayers;
     }
 
     public static int getUniquePlayerJoins() {
@@ -37,7 +36,7 @@ public class DataManger {
     }
 
     public static void setUniquePlayerJoins(int uniquePlayerJoins) {
-        DataManger.uniquePlayerJoins = uniquePlayerJoins;
+        DataManager.uniquePlayerJoins = uniquePlayerJoins;
     }
 
     public static int getPlayerJoins() {
@@ -45,7 +44,7 @@ public class DataManger {
     }
 
     public static void setPlayerJoins(int playerJoins) {
-        DataManger.playerJoins = playerJoins;
+        DataManager.playerJoins = playerJoins;
     }
 
     public static void saveData() {

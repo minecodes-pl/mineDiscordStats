@@ -5,18 +5,18 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import pl.minecodes.minediscordstats.storage.DataManger;
+import pl.minecodes.minediscordstats.storage.DataManager;
 
 public class PlayerJoinListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent e) {
-        DataManger.setPlayerJoins(DataManger.getPlayerJoins() + 1);
+        DataManager.setPlayerJoins(DataManager.getPlayerJoins() + 1);
         if(!e.getPlayer().hasPlayedBefore()) {
-            DataManger.setUniquePlayerJoins(DataManger.getUniquePlayerJoins() + 1);
+            DataManager.setUniquePlayerJoins(DataManager.getUniquePlayerJoins() + 1);
         }
-        if(Bukkit.getOnlinePlayers().size() > DataManger.getRecordPlayers()) {
-            DataManger.setRecordPlayers(Bukkit.getOnlinePlayers().size());
+        if(Bukkit.getOnlinePlayers().size() > DataManager.getRecordPlayers()) {
+            DataManager.setRecordPlayers(Bukkit.getOnlinePlayers().size());
         }
     }
 
