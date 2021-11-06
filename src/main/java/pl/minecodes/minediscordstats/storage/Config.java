@@ -1,7 +1,5 @@
 package pl.minecodes.minediscordstats.storage;
 
-import org.bukkit.Bukkit;
-import pl.minecodes.minediscordstats.MineDiscordStats;
 import space.arim.dazzleconf.annote.ConfComments;
 import space.arim.dazzleconf.annote.ConfDefault;
 import space.arim.dazzleconf.annote.ConfHeader;
@@ -42,5 +40,4 @@ public interface Config {
         int refreshTime();
 
     }
-
 }
