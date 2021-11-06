@@ -75,13 +75,4 @@ public class BotInstance {
         setJda(null);
         setReady(false);
     }
-
-
-    private void registerListeners() {
-        if(jda == null || !ready) {
-            throw new IllegalStateException("Bot session isn't fully started!");
-        }
-
-    }
-
 }
