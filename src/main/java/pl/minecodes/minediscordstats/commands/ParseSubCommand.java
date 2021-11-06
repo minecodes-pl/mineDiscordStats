@@ -17,11 +17,11 @@ public class ParseSubCommand extends SubCommand {
             MessageUtil.sendMessage(sender, FileManager.getMessages().parseMessageRequired());
             return;
         }
-        String text = "";
-        for (int i=1;i<arguments.length;i++) {
-            text = text + arguments[i] + " ";
+        StringBuilder text = new StringBuilder();
+        for (int i=1; i < arguments.length; i++) {
+            text.append(arguments[i]).append(" ");
         }
         MessageUtil.sendMessage(sender, FileManager.getMessages().messageParsed());
-        MessageUtil.sendMessage(sender, PlaceholderHandler.parse(text));
+        MessageUtil.sendMessage(sender, PlaceholderHandler.parse(text.toString()));
     }
 }
