@@ -1,6 +1,6 @@
 package pl.minecodes.minediscordstats;
 
-import net.dv8tion.jda.api.JDA;
+import java.util.Objects;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -9,11 +9,10 @@ import pl.minecodes.minediscordstats.discord.BotInstance;
 import pl.minecodes.minediscordstats.discord.BotManager;
 import pl.minecodes.minediscordstats.listeners.PlayerJoinListener;
 import pl.minecodes.minediscordstats.statistics.StatisticsManager;
-import pl.minecodes.minediscordstats.storage.DataManger;
+import pl.minecodes.minediscordstats.storage.DataManager;
 import pl.minecodes.minediscordstats.storage.FileManager;
 import pl.minecodes.minediscordstats.tasks.StatusUpdater;
 
-import javax.security.auth.login.LoginException;
 import java.util.logging.Level;
 
 public final class MineDiscordStats extends JavaPlugin {
@@ -39,7 +38,7 @@ public final class MineDiscordStats extends JavaPlugin {
         }
         Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
             StatisticsManager.refreshStats();
-            DataManger.saveData();
+            DataManager.saveData();
         }, period*20L, period*20L);
         Bukkit.getScheduler().runTaskTimer(this, new StatusUpdater(BotManager.getBotInstance().getJda()),
                 period*20L, period*20L);
@@ -50,14 +49,14 @@ public final class MineDiscordStats extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommand("minediscordstats").setExecutor(new MainCommand());
+        Objects.requireNonNull(getCommand("minediscordstats")).setExecutor(new MainCommand());
     }
 
-    public long init(boolean firstInit) {
+    public void init(boolean firstInit) {
         long time = System.currentTimeMillis();
         getLogger().log(Level.INFO, "Loading configuration files...");
         FileManager.loadConfiguration();
-        DataManger.loadData();
+        DataManager.loadData();
         if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             getLogger().log(Level.INFO, "PlaceholderAPI detected! Hooking into it.");
             papiHookEnabled = true;
@@ -69,20 +68,19 @@ public final class MineDiscordStats extends JavaPlugin {
         getLogger().log(Level.INFO, "Starting JDA...");
         BotInstance botInstance = BotManager.init();
         if(botInstance == null) {
-            return -1;
+            return;
         }
         getLogger().log(Level.INFO, "Loading statistics...");
         StatisticsManager.loadStatistics();
         scheduleTasks(FileManager.getConfig().stats().refreshTime());
         long startupTime = System.currentTimeMillis() - time;
         getLogger().log(Level.INFO, "Done! Loaded in " + startupTime + "ms.");
-        return startupTime;
     }
 
     @Override
     public void onEnable() {
         instance = this;
-        Metrics metrics = new Metrics(this, 11315);
+        new Metrics(this, 11315);
         init(true);
     }
 
