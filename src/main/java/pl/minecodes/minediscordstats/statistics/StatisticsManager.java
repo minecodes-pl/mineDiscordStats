@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class StatisticsManager {
 
-    private static List<Statistic> statisticList = new ArrayList<>();
+    private static final List<Statistic> statisticList = new ArrayList<>();
 
     public static void refreshStats() {
         if(!Bukkit.getServer().isStopping()) {
@@ -27,15 +27,11 @@ public class StatisticsManager {
         }
     }
 
-    public static List<Statistic> getStatisticList() {
-        return statisticList;
-    }
-
     public static void loadStatistics() {
         Logger logger = MineDiscordStats.getInstance().getLogger();
         FileConfiguration stats = FileManager.getStatsFile();
         statisticList.clear();
-        for (String key : stats.getConfigurationSection("stats").getKeys(false)) {
+        for (String key : Objects.requireNonNull(stats.getConfigurationSection("stats")).getKeys(false)) {
             boolean enabled = stats.getBoolean("stats." + key + ".enabled");
             if(!enabled) {
                 continue;
@@ -55,7 +51,4 @@ public class StatisticsManager {
         }
         refreshStats();
     }
-
-
-
 }
